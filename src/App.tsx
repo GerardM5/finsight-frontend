@@ -2,9 +2,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/LoginPage"; // ajusta si está en otra carpeta
 import Dashboard from "./pages/DashboardPage";
-import TransactionsPage from "./pages/TransactionsPage.tsx";
+import TransactionsPage from "./transactions/pages/TransactionsPage.tsx";
 import MainLayout from "./layout/MainLayout.tsx";
-import ImportMappingPage from "./pages/ImportMappingPage.tsx"; // si ya existe
+import ImportMappingPage from "./transactions/pages/ImportMappingPage.tsx"; // si ya existe
 
 function App() {
     return (
