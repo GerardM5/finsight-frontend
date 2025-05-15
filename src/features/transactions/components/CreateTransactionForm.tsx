@@ -1,58 +1,69 @@
-import {useForm} from "react-hook-form";
-import api from "../../../api/axios.ts";
 import type {FormData} from "../types/formData.ts";
-import {useState} from "react";
+import {type FormEvent, useState} from "react";
+import {useTransaction} from "../hooks/useTransaction.ts";
+import type {TransactionType} from "../types/transaction.ts";
 
 interface Props {
     onSubmit: () => void;
 }
 
-export const CreateTransactionForm = ({onSubmit }:Props) => {
+export const CreateTransactionForm = ({onSubmit}: Props) => {
 
-    const {register, handleSubmit, reset} = useForm<FormData>();
     const [editingId, setEditingId] = useState<number | null>(null);
+    const {create} = useTransaction();
 
 
-    const onFormSubmit = async (data: FormData) => {
+    const onFormSubmit = async (e: FormEvent) => {
         try {
-            await api.post("/transactions", data);
-            reset();
+            e.preventDefault();
+            const target = e.currentTarget as HTMLFormElement;
+            const formData = new FormData(target);
+            const data: FormData = {
+                description: formData.get("description") as string,
+                amount: parseFloat(formData.get("amount") as string),
+                category: formData.get("category") as string,
+                date: formData.get("date") as string,
+                type: formData.get("transactionType") as TransactionType,
+            };
+            await create(data);
             onSubmit();
+            target.reset();
         } catch (err) {
-            console.error("Error saving transaction", err);
+            console.error("Error submitting the form", err);
         }
     };
+
     return (
         <form
-            onSubmit={handleSubmit(onFormSubmit)}
-            className="bg-white p-4 mb-6 rounded shadow space-y-3"
+            onSubmit={onFormSubmit}
+            className=""
         >
             <div className="flex gap-3 flex-wrap">
                 <input
                     type="text"
                     placeholder="Description"
-                    {...register("description", {required: true})}
+                    name = "description"
                     className="flex-1 p-2 border rounded"
                 />
                 <input
                     type="number"
                     step="0.01"
                     placeholder="Amount"
-                    {...register("amount", {required: true})}
+                    name="amount"
                     className="w-32 p-2 border rounded"
                 />
                 <input
                     type="text"
                     placeholder="Category"
-                    {...register("category", {required: true})}
+                    name="category"
                     className="w-32 p-2 border rounded"
                 />
                 <input
                     type="date"
-                    {...register("date", {required: true})}
+                    name="date"
                     className="w-40 p-2 border rounded"
                 />
-                <select {...register("type")} className="p-2 border rounded">
+                <select name="transactionType" defaultValue="EXPENSE">
                     <option value="INCOME">Income</option>
                     <option value="EXPENSE">Expense</option>
                 </select>
@@ -68,7 +79,6 @@ export const CreateTransactionForm = ({onSubmit }:Props) => {
                             type="button"
                             onClick={() => {
                                 setEditingId(null);
-                                reset();
                             }}
                             className="text-sm text-gray-600 hover:underline"
                         >

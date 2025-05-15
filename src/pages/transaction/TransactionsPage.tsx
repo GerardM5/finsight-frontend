@@ -5,13 +5,13 @@ import {useTransaction} from "../../features/transactions/hooks/useTransaction.t
 
 export default function TransactionsPage() {
 
-    const {transactions, fetchTransactions} = useTransaction();
+    const {transactions, getAll} = useTransaction();
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Transactions</h1>
-            <CreateTransactionForm onSubmit={fetchTransactions}/>
-            <TransactionsTable transactions={transactions} onReloadData={fetchTransactions}/>
+        <div className="flex-col flex gap-4 ">
+            <h1 className="text-2xl text-center font-bold py-4">Transactions</h1>
+            <CreateTransactionForm onSubmit={getAll}/>
+            <TransactionsTable transactions={transactions} onReloadData={getAll}/>
         </div>
     );
 }
