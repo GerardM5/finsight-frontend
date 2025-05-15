@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../api/axios"; // tu instancia con interceptor
+import api from "../../api/axios.ts"; // tu instancia con interceptor
 import { useNavigate } from "react-router-dom";
 
 type MonthlySummary = {

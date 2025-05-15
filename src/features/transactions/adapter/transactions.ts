@@ -1,4 +1,4 @@
-import api from "../../api/axios.ts";
+import api from "../../../api/axios.ts";
 import type {Transaction} from "../types/transaction.ts";
 
 const mapTransaction = (t: Transaction): Transaction => ({

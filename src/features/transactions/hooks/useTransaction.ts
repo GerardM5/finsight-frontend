@@ -1,6 +1,6 @@
 import {useState} from "react";
 import type {Transaction} from "../types/transaction.ts";
-import api from "../../api/axios.ts";
+import api from "../../../api/axios.ts";
 import {transactionsAdapter} from "../adapter/transactions.ts";
 
 export const useTransaction = () => {

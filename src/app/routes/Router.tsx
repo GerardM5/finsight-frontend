@@ -1,12 +1,11 @@
-// src/App.tsx
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/LoginPage"; // ajusta si está en otra carpeta
-import Dashboard from "./pages/DashboardPage";
-import TransactionsPage from "./transactions/pages/TransactionsPage.tsx";
-import MainLayout from "./layout/MainLayout.tsx";
-import ImportMappingPage from "./transactions/pages/ImportMappingPage.tsx"; // si ya existe
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Login from "../../pages/login/LoginPage.tsx";
+import MainLayout from "../layout/MainLayout.tsx";
+import Dashboard from "../../pages/dashboard/DashboardPage.tsx";
+import TransactionsPage from "../../pages/transaction/TransactionsPage.tsx";
+import ImportMappingPage from "../../pages/transaction/ImportMappingPage.tsx";
 
-function App() {
+export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
@@ -21,5 +20,3 @@ function App() {
         </BrowserRouter>
     );
 }
-
-export default App;

@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-import api from "../../api/axios.ts";
+import api from "../../../api/axios.ts";
 import type {FormData} from "../types/formData.ts";
 import {useState} from "react";
 

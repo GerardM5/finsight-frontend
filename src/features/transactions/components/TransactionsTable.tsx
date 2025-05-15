@@ -1,4 +1,4 @@
-import api from "../../api/axios.ts";
+import api from "../../../api/axios.ts";
 import {useEffect} from "react";
 import type {Transaction} from "../types/transaction.ts";
 

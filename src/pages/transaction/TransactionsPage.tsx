@@ -1,6 +1,6 @@
-import {CreateTransactionForm} from "../components/CreateTransactionForm.tsx";
-import {TransactionsTable} from "../components/TransactionsTable.tsx";
-import {useTransaction} from "../hooks/useTransaction.ts";
+import {CreateTransactionForm} from "../../features/transactions/components/CreateTransactionForm.tsx";
+import {TransactionsTable} from "../../features/transactions/components/TransactionsTable.tsx";
+import {useTransaction} from "../../features/transactions/hooks/useTransaction.ts";
 
 
 export default function TransactionsPage() {
